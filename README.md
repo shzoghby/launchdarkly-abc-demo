@@ -76,3 +76,6 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 newLogo off trigger: https://app.launchdarkly.com/webhook/triggers/69e3362da71b5d0ae0cf12bb/e39a8065-1348-405d-9422-a8887f40c1d4
 newLogo on trigger: https://app.launchdarkly.com/webhook/triggers/69e3361fe63ae80a969b069c/6c0ba787-9497-4236-b21d-4f3fe0d9c8c5
+
+newLogIn Off: https://app.launchdarkly.com/webhook/triggers/69e373496493570ab8884f5d/ce5774e8-63fd-41a1-a276-a30c30d5f122
+newLogIn On: https://app.launchdarkly.com/webhook/triggers/69e373654ebdd70aae1ac788/95ec42fc-7924-4ac1-a11e-df6f8b292fde

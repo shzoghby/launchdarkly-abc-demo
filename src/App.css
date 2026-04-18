@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: black;
   min-height: 5vh;
   display: flex;
   align-items: center;
@@ -60,7 +60,7 @@
 
 form {
   background-color: #ffffff;
-  padding: 40px;
+  padding: 20px;
   border-radius: 12px;
   box-shadow: '0 8px 24px rgba(0; 0; 0; 0.1)';
   width: 100%;
@@ -84,12 +84,13 @@ form {
 
 .inputGroup {
   margin-bottom: 20px;
+  display: contents;
 }
 
 label {
   display: block;
   margin-bottom: 8px;
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 500;
   color: #555;
 }
@@ -119,6 +120,86 @@ button {
   margin-top: 10px;
 }
 
+.logInForm {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: '0 8px 24px rgba(0; 0; 0; 0.1)';
+  width: 100%;
+  max-width: 400px;
+}
+
+.emailLabel {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #555;
+      align-content: end;
+    width: 120px;
+}
+
+.signUpList {    
+  list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.loggedIn {
+  margin-left: auto;
+}
+
+.emailInput {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.passwordLabel {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #555;
+      align-content: end;
+    width: 120px;
+}
+
+.passwordInput {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.signInButton {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background-color: red;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 10px;
+}
+
+.logInInputGroup {
+  margin-bottom: 20px;
+  display: flex;
+}
+
 .signupText {
   margin-top: 20px;
   font-size: 14px;
@@ -130,6 +211,16 @@ button {
   color: #007bff;
   text-decoration: none;
   font-weight: 500;
+      vertical-align: super;
+    font-size: large;
+}
+
+.signUpAppleLink {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+      vertical-align: super;
+    font-size: large;
 }
 
 .top-banner {
@@ -146,7 +237,7 @@ button {
 }
 
 .logo-container {
-padding: 12px;
+  padding: 12px;
 }
 
 .logo {
@@ -159,4 +250,31 @@ padding: 12px;
   margin-left: 20px;
   font-weight: bold;
   font-size: 25pt;
+}
+
+.product-container {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  height: 45vh;
+  width: 48vh;
+  font-family: 'Segoe UI; Tahoma; Geneva; Verdana; sans-serif;';
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: '0 8px 24px rgba(0; 0; 0; 0.1)';
+  width: 95%;
+}
+
+.productText {
+  margin-top: 20px;
+  font-size: 30px;
+  text-align: center;
+  color: #333;
+  font-weight: bold;
+}
+
+.product-list {
+  list-style-type: none;
+  padding: 0;
+  color: #666;
 }
