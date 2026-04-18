@@ -49,6 +49,13 @@ export const userList: UserItem[] = [{
   title: 'Demo End User'
 },
 {
+  key: 'demo-user3',
+  name: 'Julia Roberts',
+  email: 'julia.roberts@netflix.com',
+  office: 'Sydney',
+  title: 'Demo End User'
+},
+{
   key: 'user1',
   name: 'Harrison Ford',
   email: 'harrison.ford@hbo.com',
