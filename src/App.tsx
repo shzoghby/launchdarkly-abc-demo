@@ -33,7 +33,7 @@ function App({ userName, userKey, userTitle }: AppProps) {
           <a href="#contact">Contact</a>
         </nav>
         <div className='loggedIn'>
-          <b>{userName}</b>&nbsp;{userKey ? <b>|&nbsp;{userKey}</b> : <span></span> } |&nbsp;<b>{userTitle}</b>
+          <b>{userKey ? <b>{userKey}&nbsp;|</b> : <span></span> }&nbsp;{userName}</b>&nbsp;|&nbsp;<b>{userTitle}</b>
         </div>
       </header>
       <body className="App-body">

@@ -5,6 +5,8 @@ import { userList } from './config';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { asyncWithLDProvider, LDContext } from 'launchdarkly-react-client-sdk';
+import Observability, { LDObserve } from '@launchdarkly/observability';
+import SessionReplay, { LDRecord } from '@launchdarkly/session-replay';
 
 (async () => {
   const params = new URLSearchParams(window.location.search);
@@ -32,7 +34,24 @@ import { asyncWithLDProvider, LDContext } from 'launchdarkly-react-client-sdk';
 
   const LDProvider = await asyncWithLDProvider({
     clientSideID: process.env.REACT_APP_LD_CLIENT_SIDE_ID ?? '',
-    context
+    context,
+    options: {
+      plugins: [
+        new Observability({
+          tracingOrigins: true, // attribute frontend requests to backend domains
+          networkRecording: {
+            enabled: true,
+            recordHeadersAndBody: true
+          }
+        }),
+        new SessionReplay({
+          privacySetting: 'strict',
+          // or 'default' to redact text matching common regex for PII
+          // or 'none' to turn off obfuscation
+        }
+        )
+      ]
+    }
   });
 
 
@@ -40,7 +59,7 @@ import { asyncWithLDProvider, LDContext } from 'launchdarkly-react-client-sdk';
   root.render(
     <React.StrictMode>
       <LDProvider>
-       <App userName={context.name} userTitle={context.title} userKey={context.key} />
+        <App userName={context.name} userTitle={context.title} userKey={context.key} />
       </LDProvider>
     </React.StrictMode>,
   );
