@@ -16,7 +16,7 @@ export const initializeLaunchDarkly = async (currentUser: any) => {
         // Set clientSideID to your own Client-side ID. You can find this in
         // your LaunchDarkly portal under Account settings / Projects
         const ldProvider = await asyncWithLDProvider({
-            clientSideID: process.env.LAUNCHDARKLY_CLIENT_SIDE_ID ?? '69e09a2b60ee3c0a6d062be9',
+            clientSideID: process.env.LAUNCHDARKLY_CLIENT_SIDE_ID as string ?? '69e09a2b60ee3c0a6d062be9',
             context,
             options: {
                 plugins: [
@@ -37,7 +37,7 @@ export const initializeLaunchDarkly = async (currentUser: any) => {
             }
         });
 
-        const ldClient: LDClient = initialize(process.env.LAUNCHDARKLY_CLIENT_SIDE_ID ?? '69e09a2b60ee3c0a6d062be9' as string, context);
+        const ldClient: LDClient = initialize(process.env.LAUNCHDARKLY_CLIENT_SIDE_ID as string ?? '69e09a2b60ee3c0a6d062be9', context);
         await ldClient.waitForInitialization(10);
         ldClient.track('home-page-views', { context: context });
         ldClient.track('sign-up-apple-average-click-rate', { context: context });
