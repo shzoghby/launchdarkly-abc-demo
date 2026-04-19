@@ -27,14 +27,7 @@ import SessionReplay from '@launchdarkly/session-replay';
       email: currentUser[0].email,
       office: currentUser[0].office,
       title: currentUser[0].title
-    } : {
-      kind: 'user',
-      key: 'sem',
-      name: 'Luke Cage',
-      email: 'luke.cage@abc.com',
-      office: 'Melbourne',
-      title: 'Solution Engineering Manager'
-    };
+    } : null;
 
     const LDProvider = await asyncWithLDProvider({
       clientSideID: process.env.REACT_APP_LD_CLIENT_SIDE_ID ?? '',

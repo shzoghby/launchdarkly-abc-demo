@@ -8,7 +8,7 @@ This is a sample app demonstrating `launchdarkly-react-client-sdk` for ABC Compa
 * After login, go under the target environment & copy both `Client-side ID` & `SDK key` values. *Learn more [here](https://launchdarkly.com/docs/home/account/environment/keys)*
 * Follow the steps [here](https://nodejs.org/en/download) to install *Node.js* to you machine.
 * Follow teh steps [here](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable) to install *yarn* to your machine.
-* (optional) ngrok: sign up for [ngrok](https://ngrok.com) & follow the setup & installation steps.
+* Sign up for [ngrok](https://ngrok.com) & follow the setup & installation steps.
 
 ## Running the app
 Follow these steps to run the app:
@@ -23,11 +23,11 @@ Follow these steps to run the app:
     yarn && yarn start
     ```
 * Browser will open with url **http://localhost:3000/**
-* You will need to have a public url for Metrics, in command line, run the following:
+* You will need to have a public url for Metrics & Experiments, in command line, run the following:
     ```sh
     ngrok http 80
     ```
-* localhost url will tunnel to a new generated public url that you use *for example: https://d6aa-2403-5805-8470-0-e139-bf8d-eea5-8a02.ngrok-free.app*
+* localhost url will tunnel to a new generated public url that you can use *for example: https://d6aa-2403-5805-8470-0-e139-bf8d-eea5-8a02.ngrok-free.app*
 
 ## Project Available Scripts
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
@@ -63,7 +63,7 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## LaunchDarkly Available Users Context
+## App Available Users Context
 | Key | Name | Title|
 | -------- | -------- | -------- |
 | sem | Luke Cage | Solution Engineering Manager |
@@ -75,6 +75,13 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 | user1 | LHarrison Ford | End User |
 | user2 | Keanu Reeves | End User |
 
+## App LaunchDarkly Implemented Features
+The App has teh following features implemented:
+* Feature Flags  (kill switch, individual targeting, rule-based)
+* Metrics (Clickable or tapped & Page Views) tracking is enabled
+* Experiment (using Flag & Clickable or tapped metric)  
+* Observability & Session-Replay are both enabled (Errors, Logs, Traces)
+
 ## Part#1: Release and Remediate
 * Login to [LaunchDarkly](https://app.launchdarkly.com/)  under Flags -> create a new flag called `newLogo` with All traffic Flags is On.
 **Make sure you enable `Available on client-side SDKs`.**
@@ -82,7 +89,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 * Toggle the flag `newLogo` to `On` in the dashboard and the app will show the new LaunchDarkly logo
 * Toggle the flag `newLogo` to `Off` in the dashboard and the app will show the old LaunchDarkly logo
 
-Alternatively, you can use below API calls to turn the flags on/off without using LaunchDarkly UI:
+Alternatively, you can use below API calls to turn the flags on/off without using LaunchDarkly UI: *you can also use `LaunchDarkly.postman_collection.json` in postman*
 * Turn `newLogo` Off
 ```sh
 curl -X POST -H "Content-Type: application/json" -d '{"Authorization":"<replace-by SDK Key>"}' https://app.launchdarkly.com/webhook/triggers/69e3362da71b5d0ae0cf12bb/e39a8065-1348-405d-9422-a8887f40c1d4
@@ -102,7 +109,7 @@ curl -X POST -H "Content-Type: application/json" -d '{"Authorization":"<replace-
 * Navigate to url or add suffix `?id=sem` or `?id=demo-user1` or `?id=demo-user2` or `?id=demo-user3`, the app will show the new login component with the new Apple & Google SignUp links.
 * Add to the url `?id=pm` or `?id=ai` or `?id=user1` or `?id=user2`, the app will show the old login component.
 
-Alternatively, you can use below API calls to turn the flags on/off without using LaunchDarkly UI:
+Alternatively, you can use below API calls to turn the flags on/off without using LaunchDarkly UI: *you can also use `LaunchDarkly.postman_collection.json` in postman*
 * Turn `newLogIn` Off
 ```sh
 curl -X POST -H "Content-Type: application/json" -d '{"Authorization":"<replace-by SDK Key>"}' https://app.launchdarkly.com/webhook/triggers/69e373496493570ab8884f5d/ce5774e8-63fd-41a1-a276-a30c30d5f122

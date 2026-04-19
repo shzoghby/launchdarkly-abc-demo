@@ -1,0 +1,194 @@
+{
+	"info": {
+		"_postman_id": "4c5c7cc1-e7ab-4e67-ada2-2ad115cb8df6",
+		"name": "LaunchDarkly",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1324918"
+	},
+	"item": [
+		{
+			"name": "newLogo OFF",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "sdk-144d3968-221b-4f3a-a5bd-edd7be76b385",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"integrationKey\": \"generic-trigger\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://app.launchdarkly.com/webhook/triggers/69e3362da71b5d0ae0cf12bb/e39a8065-1348-405d-9422-a8887f40c1d4",
+					"protocol": "https",
+					"host": [
+						"app",
+						"launchdarkly",
+						"com"
+					],
+					"path": [
+						"webhook",
+						"triggers",
+						"69e3362da71b5d0ae0cf12bb",
+						"e39a8065-1348-405d-9422-a8887f40c1d4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "newLogo ON",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "sdk-144d3968-221b-4f3a-a5bd-edd7be76b385",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"integrationKey\": \"generic-trigger\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://app.launchdarkly.com/webhook/triggers/69e3361fe63ae80a969b069c/6c0ba787-9497-4236-b21d-4f3fe0d9c8c5",
+					"protocol": "https",
+					"host": [
+						"app",
+						"launchdarkly",
+						"com"
+					],
+					"path": [
+						"webhook",
+						"triggers",
+						"69e3361fe63ae80a969b069c",
+						"6c0ba787-9497-4236-b21d-4f3fe0d9c8c5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "newLogIn ON",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "sdk-144d3968-221b-4f3a-a5bd-edd7be76b385",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"integrationKey\": \"generic-trigger\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://app.launchdarkly.com/webhook/triggers/69e373654ebdd70aae1ac788/95ec42fc-7924-4ac1-a11e-df6f8b292fde",
+					"protocol": "https",
+					"host": [
+						"app",
+						"launchdarkly",
+						"com"
+					],
+					"path": [
+						"webhook",
+						"triggers",
+						"69e373654ebdd70aae1ac788",
+						"95ec42fc-7924-4ac1-a11e-df6f8b292fde"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "newLogIn OFF",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "sdk-144d3968-221b-4f3a-a5bd-edd7be76b385",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"integrationKey\": \"generic-trigger\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://app.launchdarkly.com/webhook/triggers/69e373496493570ab8884f5d/ce5774e8-63fd-41a1-a276-a30c30d5f122",
+					"protocol": "https",
+					"host": [
+						"app",
+						"launchdarkly",
+						"com"
+					],
+					"path": [
+						"webhook",
+						"triggers",
+						"69e373496493570ab8884f5d",
+						"ce5774e8-63fd-41a1-a276-a30c30d5f122"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

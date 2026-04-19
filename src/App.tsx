@@ -16,6 +16,24 @@ interface AppProps {
 function App({ context }: AppProps) {
   const { newLogo, newLogIn } = useFlags();
 
+  if(context == null || context == undefined) {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <nav className="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+          </nav>
+          <div className='loggedIn'>
+            <b>User not found</b>
+          </div>
+        </header>
+        <body className="App-body" />
+      </div>
+    );
+  }
+
   try {
     const ldClient = initialize(process.env.REACT_APP_LD_CLIENT_SIDE_ID ?? '', context);
 
@@ -82,7 +100,7 @@ function App({ context }: AppProps) {
             <a href="#contact">Contact</a>
           </nav>
           <div className='loggedIn'>
-            <b>{context.key ? <b>{context.key}&nbsp;|</b> : <span></span>}&nbsp;{context.name}</b>&nbsp;|&nbsp;<b>{context.title}</b>
+            <b>User not found</b>
           </div>
         </header>
         <body className="App-body" />
