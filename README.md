@@ -190,3 +190,5 @@ For visual reference of the implementation and configuration:
 - Application Screenshots: see [README-screen-shots-web.md](./README-screen-shots-web.md)
 - LaunchDarkly Configuration: see [README-screen-shots-ld.md](./README-screen-shots-ld.md)
 
+These are included to provide quick validation of functionality without requiring a full local setup.
+
