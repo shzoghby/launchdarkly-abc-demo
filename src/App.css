@@ -135,14 +135,14 @@ button {
   font-size: 20px;
   font-weight: 500;
   color: #555;
-      align-content: end;
-    width: 120px;
+  align-content: end;
+  width: 120px;
 }
 
-.signUpList {    
+.signUpList {
   list-style: none;
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 .loggedIn {
@@ -166,8 +166,8 @@ button {
   font-size: 20px;
   font-weight: 500;
   color: #555;
-      align-content: end;
-    width: 120px;
+  align-content: end;
+  width: 120px;
 }
 
 .passwordInput {
@@ -211,16 +211,24 @@ button {
   color: #007bff;
   text-decoration: none;
   font-weight: 500;
-      vertical-align: super;
-    font-size: large;
+  vertical-align: super;
+  font-size: large;
 }
 
 .signUpAppleLink {
   color: #007bff;
   text-decoration: none;
   font-weight: 500;
-      vertical-align: super;
-    font-size: large;
+  vertical-align: super;
+  font-size: large;
+}
+
+.signUpGoogleLink {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+  vertical-align: super;
+  font-size: large;
 }
 
 .top-banner {
@@ -277,4 +285,13 @@ button {
   list-style-type: none;
   padding: 0;
   color: #666;
+}
+
+.chat-iframe {
+  border: none;
+  height: 50vh;
+  margin-top: 20px;
+  height: 100%;
+  min-height: 550px;
+  display: none;
 }

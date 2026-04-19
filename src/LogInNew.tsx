@@ -48,7 +48,7 @@ function LogInNew({ newLogo }: LogInNewProps) {
             <ul className='signUpList'>
                 <li><p className='signupText'>Don't have an account?</p></li>
                 <li> <img src={logoApple} alt="Company Logo" className="logo" /><a href="#" className='signUpAppleLink' id='signUpApple'>Sign up with Apple</a></li>
-                <li><img src={logoGoogle} alt="Company Logo" className="logo" /><a href="#" className='link' id='signUpGoogle'>Sign up with Google</a></li>
+                <li><img src={logoGoogle} alt="Company Logo" className="logo" /><a href="#" className='signUpGoogleLink' id='signUpGoogle'>Sign up with Google</a></li>
             </ul>
             <p className='signupText'>
                 OR

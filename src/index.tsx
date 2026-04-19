@@ -5,8 +5,8 @@ import { userList } from './config';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { asyncWithLDProvider, LDContext } from 'launchdarkly-react-client-sdk';
-import Observability, { LDObserve } from '@launchdarkly/observability';
-import SessionReplay, { LDRecord } from '@launchdarkly/session-replay';
+import Observability from '@launchdarkly/observability';
+import SessionReplay from '@launchdarkly/session-replay';
 
 (async () => {
 
@@ -15,12 +15,12 @@ import SessionReplay, { LDRecord } from '@launchdarkly/session-replay';
 
     const params = new URLSearchParams(window.location.search);
     const contextKey: string = params.get('id') ?? 'sem';
-    const currentUser = userList.filter(user => user.key == contextKey.toLowerCase());
+    const currentUser = userList.filter(user => user.key === contextKey.toLowerCase());
 
     // Set clientSideID to your own Client-side ID. You can find this in
     // your LaunchDarkly portal under Account settings / Projects
 
-    const context: LDContext = currentUser && currentUser.length != 0 ? {
+    const context: LDContext = currentUser && currentUser.length !== 0 ? {
       kind: 'user',
       key: currentUser[0].key,
       name: currentUser[0].name,
@@ -58,15 +58,11 @@ import SessionReplay, { LDRecord } from '@launchdarkly/session-replay';
       }
     });
 
-    LDRecord.start({
-      silent: false // if true, console.warn messages created in this method are skipped
-    });
-
     const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
     root.render(
       <React.StrictMode>
         <LDProvider>
-          <App userName={context.name} userTitle={context.title} userKey={context.key} />
+          <App context={context} />
         </LDProvider>
       </React.StrictMode>,
     );
@@ -77,7 +73,7 @@ import SessionReplay, { LDRecord } from '@launchdarkly/session-replay';
     const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
     root.render(
       <React.StrictMode>
-        <App userName='' userTitle='' userKey='sem' />
+        <App />
       </React.StrictMode>,
     );
   }

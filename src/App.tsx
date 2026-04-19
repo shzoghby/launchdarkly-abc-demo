@@ -1,26 +1,38 @@
-import React, { useState, useEffect } from 'react';
 import logo from './logo.png';
 import logoDark from './logo-dark.svg';
 import './App.css';
 import { useFlags } from 'launchdarkly-react-client-sdk';
 import { LDObserve } from '@launchdarkly/observability';
+import { LDRecord } from '@launchdarkly/session-replay';
+import { initialize } from 'launchdarkly-react-client-sdk';
 
 import LogInNew from './LogInNew';
 import LogIn from './LogIn';
-import Products from './Products';
 
 interface AppProps {
-  userKey?: string;
-  userName: string;
-  userTitle: string;
+  context?: any
 }
 
-function App({ userName, userKey, userTitle }: AppProps) {
+function App({ context }: AppProps) {
   const { newLogo, newLogIn } = useFlags();
+
   try {
+    const ldClient = initialize(process.env.REACT_APP_LD_CLIENT_SIDE_ID ?? '', context);
+
+    ldClient.track('home-page-views', { context: context });
+    ldClient.track('sign-up-apple-average-click-rate', { context: context });
+  } catch (err) {
+    // Handle initialization failure or timeout
+    console.error("SDK failed to initialize within 5 seconds", err);
+  }
+
+  try {
+    LDObserve.start();
+
     if (newLogIn) {
-      // Start observability 
-      LDObserve.start();
+      LDRecord.start({
+        silent: false // if true, console.warn messages created in this method are skipped
+      });
     }
 
     return (
@@ -39,7 +51,7 @@ function App({ userName, userKey, userTitle }: AppProps) {
             <a href="#contact">Contact</a>
           </nav>
           <div className='loggedIn'>
-            <b>{userKey ? <b>{userKey}&nbsp;|</b> : <span></span>}&nbsp;{userName}</b>&nbsp;|&nbsp;<b>{userTitle}</b>
+            <b>{context.key ? <b>{context.key}&nbsp;|</b> : <span></span>}&nbsp;{context.name}</b>&nbsp;|&nbsp;<b>{context.title}</b>
           </div>
         </header>
         <body className="App-body">
@@ -51,13 +63,13 @@ function App({ userName, userKey, userTitle }: AppProps) {
                 <LogIn />
             }
           </div>
-          <Products />
+          <iframe src="https://chat.socialintents.com/c/chat-1776561731677" width="100%" className="chat-iframe"></iframe>
         </body>
       </div>
     );
   } catch (error) {
     console.error('Error rendering App component:', error);
-    
+
     return (
       <div className="App">
         <header className="App-header">
@@ -70,7 +82,7 @@ function App({ userName, userKey, userTitle }: AppProps) {
             <a href="#contact">Contact</a>
           </nav>
           <div className='loggedIn'>
-            <b>{userKey ? <b>{userKey}&nbsp;|</b> : <span></span>}&nbsp;{userName}</b>&nbsp;|&nbsp;<b>{userTitle}</b>
+            <b>{context.key ? <b>{context.key}&nbsp;|</b> : <span></span>}&nbsp;{context.name}</b>&nbsp;|&nbsp;<b>{context.title}</b>
           </div>
         </header>
         <body className="App-body" />

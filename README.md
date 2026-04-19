@@ -2,29 +2,39 @@
 
 This is a sample app demonstrating `launchdarkly-react-client-sdk` for ABC Company.
 
-## Running the app
+## Perquisites
+* Navigate to `chrome://settings/cookies` and make sure `Send a ‘Do Not Track’ request with your browsing traffic` is turned off.
+* Navigate to [LaunchDarkly](https://app.launchdarkly.com/signup?_bn=g&_bt=798492537804&creative=798492537804&device=c&gad_campaignid=14336284487&gad_source=1&gbraid=0AAAAADk9kA-R307kN069sTk3bOJ-XwZeD&gclid=EAIaIQobChMIpYjK1Mf4kwMVsZJmAh2-wweWEAAYASAAEgIvt_D_BwE&matchtype=e&utm_adgroup=Brand_General&utm_campaign=APAC_Search_Brand_pltf&utm_content=hp-toggle&utm_medium=cpc&utm_source=google&utm_term=launchdarkly) and sign up
+* After login, go under the target environment & copy both `Client-side ID` & `SDK key` values. *Learn more [here](https://launchdarkly.com/docs/home/account/environment/keys)*
+* Follow the steps [here](https://nodejs.org/en/download) to install *Node.js* to you machine.
+* Follow teh steps [here](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable) to install *yarn* to your machine.
+* (optional) ngrok: sign up for [ngrok](https://ngrok.com) & follow the setup & installation steps.
 
+## Running the app
 Follow these steps to run the app:
 
-* Login to LaunchDarkly under the target environment & copy both `Client-side ID` & `SDK key` values
 * Create a `.env.local` file and set your clientSideID as follows:
     ```
     REACT_APP_LD_CLIENT_SIDE_ID=<replace-by Client-side ID>
     ```
-* You should now be able to start the app by doing:
-
+* Clone or download the repo
+* In command line, navigate to folder & start the app by running the following:
     ```sh
     yarn && yarn start
     ```
+* Browser will open with url **http://localhost:3000/**
+* You will need to have a public url for Metrics, in command line, run the following:
+    ```sh
+    ngrok http 80
+    ```
+* localhost url will tunnel to a new generated public url that you use *for example: https://d6aa-2403-5805-8470-0-e139-bf8d-eea5-8a02.ngrok-free.app*
 
-## Learning ABout Create React App Available Scripts
-
+## Project Available Scripts
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 In the project directory, you can run:
 
 ### `npm start`
-
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
@@ -32,12 +42,10 @@ The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
 ### `npm test`
-
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
-
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
@@ -47,7 +55,6 @@ Your app is ready to be deployed!
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ### `npm run eject`
-
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
 If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
@@ -56,8 +63,7 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Available Users Context
-
+## LaunchDarkly Available Users Context
 | Key | Name | Title|
 | -------- | -------- | -------- |
 | sem | Luke Cage | Solution Engineering Manager |
@@ -69,10 +75,8 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 | user1 | LHarrison Ford | End User |
 | user2 | Keanu Reeves | End User |
 
-
 ## Part#1: Release and Remediate
-
-* Login to LaunchDarkly under Flags and create a flag called `newLogo` with All traffic Flags is On.
+* Login to [LaunchDarkly](https://app.launchdarkly.com/)  under Flags -> create a new flag called `newLogo` with All traffic Flags is On.
 **Make sure you enable `Available on client-side SDKs`.**
 
 * Toggle the flag `newLogo` to `On` in the dashboard and the app will show the new LaunchDarkly logo
@@ -90,9 +94,9 @@ curl -X POST -H "Content-Type: application/json" -d '{"Authorization":"<replace-
 **Note: The app is using UseFlags allowing it to respond to flag changes without a browser refresh**
 
 ## Part#2: Target
-* Login to LaunchDarkly under Flags and create a flag called `newLogIn` 
+* Login to [LaunchDarkly](https://app.launchdarkly.com/) under Flags -> create a new flag called `newLogIn` 
 * Add individual target `sem` of kind `user`
-* Add rule1 `if user key starts with demo-` serve `true`.
+* Add rule1 `if user title is one of solution` `Engineering Manager` `End User` serve `true`.
 **Make sure you enable `Available on client-side SDKs`.**
 
 * Navigate to url or add suffix `?id=sem` or `?id=demo-user1` or `?id=demo-user2` or `?id=demo-user3`, the app will show the new login component with the new Apple & Google SignUp links.
@@ -110,7 +114,18 @@ curl -X POST -H "Content-Type: application/json" -d '{"Authorization":"<replace-
 **Note: The app is using UseFlags allowing it to respond to flag changes without a browser refresh**
 
 ## Part#3: Experimentation (Extra Credit)
+* Login to [LaunchDarkly](https://app.launchdarkly.com/) under Iterate, Metrics -> create a new metric as follows:
+    * kind: Clicked or tapped
+    * click targets: `#signUpApple, .signUpAppleLink, #signUpGoogle, .signUpGoogleLink`
+    * target: type `Simple match` url `<replace-by your ngrok generated public url>`, type `Exact match` url `<replace-by your ngrok generated public url>?id=`
+    * measure: `Count`
+    * name: `SignUp Apple/Google Average click rate` 
+    * key: `sign-up-apple-average-click-rate`  
+* Under Iterate, Experiment -> create a new experiment `New LogIn Page Sign Up Apple/Google`, select `SignUp Apple/Google Average click rate` under `Metrics` & select `newLogIn` under `Flags`
+* Click on start to kick-off the experiment
+* Navigate to your app url `<replace-by your ngrok generated public url>` or `<replace-by your ngrok generated public url>?id=sem` or `<replace-by your ngrok generated public url>?id=demo-user1`
+* Click on either Google or Apple Sign Up links.
 
 ## Part#4: AI Configs (Extra Credit)
 
-## Part#4: Integrations (Extra Credit)
+## Part#5: Integrations (Extra Credit)

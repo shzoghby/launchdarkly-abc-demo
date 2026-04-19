@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import logo from './logo.png';
-import logoDark from './logo-dark.svg';
+import { useState } from 'react';
 import './App.css';
 
 interface LogInProps {
