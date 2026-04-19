@@ -4,7 +4,6 @@ import './App.css';
 import { useFlags } from 'launchdarkly-react-client-sdk';
 import { LDObserve } from '@launchdarkly/observability';
 import { LDRecord } from '@launchdarkly/session-replay';
-import { initialize } from 'launchdarkly-react-client-sdk';
 
 import LogInNew from './LogInNew';
 import LogIn from './LogIn';
@@ -17,15 +16,10 @@ interface AppProps {
 function App({ currentUser }: AppProps) {
   const { newLogo, newLogIn } = useFlags();
 
-  if(currentUser == null || currentUser == undefined) {
+  if(currentUser === null || currentUser === undefined) {
     return (
       <div className="App">
         <header className="App-header">
-          <nav className="nav-links">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-          </nav>
           <div className='loggedIn'>
             <b>User not found</b>
           </div>
@@ -54,11 +48,6 @@ function App({ currentUser }: AppProps) {
                 : <img src={logo} alt="Company Logo" className="logo" />
             }
           </div>
-          <nav className="nav-links">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-          </nav>
           <div className='loggedIn'>
             <b>{currentUser.key ? <b>{currentUser.key}&nbsp;|</b> : <span></span>}&nbsp;{currentUser.name}</b>&nbsp;|&nbsp;<b>{currentUser.title}</b>
           </div>
@@ -72,7 +61,6 @@ function App({ currentUser }: AppProps) {
                 <LogIn />
             }
           </div>
-          <iframe src="https://chat.socialintents.com/c/chat-1776561731677" width="100%" className="chat-iframe"></iframe>
         </body>
       </div>
     );

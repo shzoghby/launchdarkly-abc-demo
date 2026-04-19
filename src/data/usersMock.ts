@@ -8,6 +8,13 @@ export const usersList: User[] = [{
     title: 'Solution Engineering Manager'
 },
 {
+    key: 'sem2',
+    name: 'Jessica Jones',
+    email: 'jessica.jones@abc.com',
+    office: 'Perth',
+    title: 'Solution Engineering Manager'
+},
+{
     key: 'pm',
     name: 'Tommy Shelby',
     email: 'tommy.shelby@abc.com',

@@ -3,34 +3,34 @@
 This is a sample app demonstrating `launchdarkly-react-client-sdk` for ABC Company.
 
 ## Perquisites
-* Navigate to `chrome://settings/cookies` and make sure `Send a ‘Do Not Track’ request with your browsing traffic` is turned off.
-* Navigate to [LaunchDarkly](https://app.launchdarkly.com/signup?_bn=g&_bt=798492537804&creative=798492537804&device=c&gad_campaignid=14336284487&gad_source=1&gbraid=0AAAAADk9kA-R307kN069sTk3bOJ-XwZeD&gclid=EAIaIQobChMIpYjK1Mf4kwMVsZJmAh2-wweWEAAYASAAEgIvt_D_BwE&matchtype=e&utm_adgroup=Brand_General&utm_campaign=APAC_Search_Brand_pltf&utm_content=hp-toggle&utm_medium=cpc&utm_source=google&utm_term=launchdarkly) and sign up
-* After login, go under the target environment & copy both `Client-side ID` & `SDK key` values. *Learn more [here](https://launchdarkly.com/docs/home/account/environment/keys)*
+* Navigate to `chrome://settings/cookies`.
+* Make sure `Send a ‘Do Not Track’ request with your browsing traffic` is turned off.
+* Navigate to [LaunchDarkly](https://app.launchdarkly.com/signup?_bn=g&_bt=798492537804&creative=798492537804&device=c&gad_campaignid=14336284487&gad_source=1&gbraid=0AAAAADk9kA-R307kN069sTk3bOJ-XwZeD&gclid=EAIaIQobChMIpYjK1Mf4kwMVsZJmAh2-wweWEAAYASAAEgIvt_D_BwE&matchtype=e&utm_adgroup=Brand_General&utm_campaign=APAC_Search_Brand_pltf&utm_content=hp-toggle&utm_medium=cpc&utm_source=google&utm_term=launchdarkly) and sign up.
+* After login, go under the target environment & copy `Client-side ID` value. *Learn more [here](https://launchdarkly.com/docs/home/account/environment/keys)*.
 * Follow the steps [here](https://nodejs.org/en/download) to install *Node.js* to you machine.
-* Follow teh steps [here](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable) to install *yarn* to your machine.
+* Follow the steps [here](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable) to install *yarn* to your machine.
 * Sign up for [ngrok](https://ngrok.com) & follow the setup & installation steps.
 
-## Running the app
+## Running The Application
 Follow these steps to run the app:
 
-* Clone or download the repo
-* Run `cp .env.example .env.local` to create the env file
-* Fill out the `.env.local` file with your LaunchDarkly and OpenAI credentials
+* Clone or download the repository from GitHub.
+* Run `cp .env.example .env.local` to create the env file.
+* Fill out the `.env.local` variable `LAUNCHDARKLY_CLIENT_SIDE_ID` with your `Client-side ID` value.
 * In command line, navigate to folder & start the app by running the following:
     ```sh
     yarn && yarn start
     ```
-* Browser will open with url **http://localhost:3000/**
-* You will need to have a public url for Metrics & Experiments, in command line, run the following:
+* Default browser will open with url **http://localhost:3000/**
+* In command line, create public url by running the following:
     ```sh
     ngrok http 3000
     ```
-* localhost url will tunnel to a new generated public url that you can use *for example: https://d6aa-2403-5805-8470-0-e139-bf8d-eea5-8a02.ngrok-free.app*
+* localhost url will tunnel to a new generated public url that you can use for Metrics & Experiments later. *For example: https://d6aa-2403-5805-8470-0-e139-bf8d-eea5-8a02.ngrok-free.app*
 
 ## Project Available Scripts
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-In the project directory, you can run:
+In the project directory, you can run the following:
 
 ### `npm start`
 Runs the app in the development mode.\
@@ -61,20 +61,25 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## App Available Users Context
-| Key | Name | Title|
-| -------- | -------- | -------- |
-| sem | Luke Cage | Solution Engineering Manager |
-| pm | Tommy Shelby | Product Manager |
-| ai | Steve Jobs | AI Product Manager |
-| demo-user1 | Mel Gibson | Demo End User|
-| demo-user2 | Mandy Moore | Demo End User |
-| demo-user3 | Julia Roberts | Demo End User |
-| user1 | LHarrison Ford | End User |
-| user2 | Keanu Reeves | End User |
+## Application Available Contexts
+All contexts are of type `user`. You can pass the `key` in the `id` parameter of the URL to impersonate a specific user (this can be replaced by your production users later).
 
-## App LaunchDarkly Implemented Features
-The App has teh following features implemented:
+| Key       | Name      | Title     | LogIn Component
+| --------  | --------  | --------  | -------- 
+| sem | Luke Cage | Solution Engineering Manager | New Component
+| sem | Jessica Jones | Solution Engineering Manager | New Component
+| pm | Tommy Shelby | Product Manager | New Component
+| ai | Steve Jobs | AI Product Manager | Old Component
+| demo-user1 | Mel Gibson | Demo End User | New Component
+| demo-user2 | Mandy Moore | Demo End User | New Component
+| demo-user3 | Julia Roberts | Demo End User | New Component
+| user1 | LHarrison Ford | End User | Old Component
+| user2 | Keanu Reeves | End User | Old Component
+
+**Note: The new logo is shown for all users. You can manually or using triggers toggle ON/OFF to show/hide the new logo for them all, if needed**
+
+## LaunchDarkly Implemented Features
+The App has the following features implemented:
 * Feature Flags  (kill switch, individual targeting, rule-based)
 * Metrics (Clickable or tapped & Page Views) tracking is enabled
 * Experiment (using Flag & Clickable or tapped metric)  
@@ -100,12 +105,12 @@ curl -X POST -H "Content-Type: application/json" -d '{"Authorization":"<replace-
 
 ## Part#2: Target
 * Login to [LaunchDarkly](https://app.launchdarkly.com/) under Flags -> create a new flag called `newLogIn` 
-* Add individual target `sem` of kind `user`
-* Add rule1 `if user title is one of solution` `Engineering Manager` `End User` serve `true`.
+* Add individual target `pm` of kind `pm` serve `true`.
+* Add rule1 `title` - `is one of ` - `Solution Engineering Manager` & `Demo End User` serve `true`.
 **Make sure you enable `Available on client-side SDKs`.**
 
 * Navigate to url or add suffix `?id=sem` or `?id=demo-user1` or `?id=demo-user2` or `?id=demo-user3`, the app will show the new login component with the new Apple & Google SignUp links.
-* Add to the url `?id=pm` or `?id=ai` or `?id=user1` or `?id=user2`, the app will show the old login component.
+* Add to the url `?id=ai` or `?id=user1` or `?id=user2`, the app will show the old login component.
 
 Alternatively, you can use below API calls to turn the flags on/off without using LaunchDarkly UI: *you can also use `LaunchDarkly.postman_collection.json` in postman*
 * Turn `newLogIn` Off
@@ -130,7 +135,3 @@ curl -X POST -H "Content-Type: application/json" -d '{"Authorization":"<replace-
 * Click on start to kick-off the experiment
 * Navigate to your app url `<replace-by your ngrok generated public url>` or `<replace-by your ngrok generated public url>?id=sem` or `<replace-by your ngrok generated public url>?id=demo-user1`
 * Click on either Google or Apple Sign Up links.
-
-## Part#4: AI Configs (Extra Credit)
-
-## Part#5: Integrations (Extra Credit)

@@ -146,7 +146,7 @@ button {
 }
 
 .loggedIn {
-  margin-left: auto;
+  margin: auto;
 }
 
 .emailInput {
