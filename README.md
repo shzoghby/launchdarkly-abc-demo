@@ -62,7 +62,7 @@ All contexts are of type `user`. Simulate users via URL, for example: `http://lo
 | Key       | Name      | Title     | LogIn Component
 | --------  | --------  | --------  | -------- 
 | sem | Luke Cage | Solution Engineering Manager | New
-| sem | Jessica Jones | Solution Engineering Manager | New
+| sem2 | Jessica Jones | Solution Engineering Manager | New
 | pm | Tommy Shelby | Product Manager | New
 | ai | Steve Jobs | AI Product Manager | Old
 | demo-user1 | Mel Gibson | Demo End User | New
