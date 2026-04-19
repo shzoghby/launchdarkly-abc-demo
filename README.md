@@ -137,7 +137,7 @@ Note: Using useFlags in REACT web app → no browser refresh required.
 - Test Rule Behaviour (Old Login) - open `<your ngrok public url>?id=user1`
 - Test Rule Behaviour (Old Login) - open `<your ngrok public url>?id=user2`
 - Test Behaviour - toggle via API
-    - Turn OFF (will turn OFF to all users)
+    - Turn OFF (will turn OFF for all users)
         ```sh
         curl -X POST -H "Content-Type: application/json" \
         -d '{"Authorization":"<your SDK key>"}' \
