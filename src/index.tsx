@@ -1,62 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import { userList } from './config';
+import { getUserDetails } from './data/users';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { asyncWithLDProvider, LDContext } from 'launchdarkly-react-client-sdk';
-import Observability from '@launchdarkly/observability';
-import SessionReplay from '@launchdarkly/session-replay';
+import { initializeLaunchDarkly } from './config/launchdarkly';
 
 (async () => {
-
   try {
-
-
     const params = new URLSearchParams(window.location.search);
     const contextKey: string = params.get('id') ?? 'sem';
-    const currentUser = userList.filter(user => user.key === contextKey.toLowerCase());
-
-    // Set clientSideID to your own Client-side ID. You can find this in
-    // your LaunchDarkly portal under Account settings / Projects
-
-    const context: LDContext = currentUser && currentUser.length !== 0 ? {
-      kind: 'user',
-      key: currentUser[0].key,
-      name: currentUser[0].name,
-      email: currentUser[0].email,
-      office: currentUser[0].office,
-      title: currentUser[0].title
-    } : null;
-
-    const LDProvider = await asyncWithLDProvider({
-      clientSideID: process.env.REACT_APP_LD_CLIENT_SIDE_ID ?? '',
-      context,
-      options: {
-        plugins: [
-          new Observability({
-            tracingOrigins: true, // attribute frontend requests to backend domains
-            networkRecording: {
-              enabled: true,
-              recordHeadersAndBody: true
-            }
-          }),
-          new SessionReplay({
-            privacySetting: 'strict',
-            // or 'default' to redact text matching common regex for PII
-            // or 'none' to turn off obfuscation
-          }
-          )
-        ]
-      }
-    });
+    const currentUser = getUserDetails(contextKey.toLowerCase());
+    const ldInitialized = await initializeLaunchDarkly(currentUser);
 
     const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
     root.render(
       <React.StrictMode>
-        <LDProvider>
-          <App context={context} />
-        </LDProvider>
+        <ldInitialized.ldProvider>
+          <App currentUser={currentUser} />
+        </ldInitialized.ldProvider>
       </React.StrictMode>,
     );
   }

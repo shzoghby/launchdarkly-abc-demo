@@ -8,15 +8,16 @@ import { initialize } from 'launchdarkly-react-client-sdk';
 
 import LogInNew from './LogInNew';
 import LogIn from './LogIn';
+import { User } from './data/users';
 
 interface AppProps {
-  context?: any
+  currentUser?: User
 }
 
-function App({ context }: AppProps) {
+function App({ currentUser }: AppProps) {
   const { newLogo, newLogIn } = useFlags();
 
-  if(context == null || context == undefined) {
+  if(currentUser == null || currentUser == undefined) {
     return (
       <div className="App">
         <header className="App-header">
@@ -32,16 +33,6 @@ function App({ context }: AppProps) {
         <body className="App-body" />
       </div>
     );
-  }
-
-  try {
-    const ldClient = initialize(process.env.REACT_APP_LD_CLIENT_SIDE_ID ?? '', context);
-
-    ldClient.track('home-page-views', { context: context });
-    ldClient.track('sign-up-apple-average-click-rate', { context: context });
-  } catch (err) {
-    // Handle initialization failure or timeout
-    console.error("SDK failed to initialize within 5 seconds", err);
   }
 
   try {
@@ -69,7 +60,7 @@ function App({ context }: AppProps) {
             <a href="#contact">Contact</a>
           </nav>
           <div className='loggedIn'>
-            <b>{context.key ? <b>{context.key}&nbsp;|</b> : <span></span>}&nbsp;{context.name}</b>&nbsp;|&nbsp;<b>{context.title}</b>
+            <b>{currentUser.key ? <b>{currentUser.key}&nbsp;|</b> : <span></span>}&nbsp;{currentUser.name}</b>&nbsp;|&nbsp;<b>{currentUser.title}</b>
           </div>
         </header>
         <body className="App-body">

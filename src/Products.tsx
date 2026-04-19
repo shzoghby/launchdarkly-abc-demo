@@ -1,6 +1,7 @@
 import './App.css';
-import { productList } from './config';
+import { getProducts } from './data/products';
 
+const productsList = getProducts();
 interface ProductsProps {
     newLogo?: any;
 }
@@ -12,7 +13,7 @@ function Products({ newLogo }: ProductsProps) {
             <div className="product-list">
                 <p className='productText'>Product Catalog</p>
                 <ul>
-                    {productList.map((product) => (
+                    {productsList.map((product) => (
                         <li key={product.id} style={{ marginBottom: '10px', listStyle: 'none' }}>
                             <strong>{product.name}</strong> - ${product.price}
                             <br />

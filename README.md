@@ -13,11 +13,9 @@ This is a sample app demonstrating `launchdarkly-react-client-sdk` for ABC Compa
 ## Running the app
 Follow these steps to run the app:
 
-* Create a `.env.local` file and set your clientSideID as follows:
-    ```
-    REACT_APP_LD_CLIENT_SIDE_ID=<replace-by Client-side ID>
-    ```
 * Clone or download the repo
+* Run `cp .env.example .env.local` to create the env file
+* Fill out the `.env.local` file with your LaunchDarkly and OpenAI credentials
 * In command line, navigate to folder & start the app by running the following:
     ```sh
     yarn && yarn start
