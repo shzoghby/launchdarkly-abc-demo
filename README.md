@@ -23,7 +23,7 @@ Follow these steps to run the app:
 * Browser will open with url **http://localhost:3000/**
 * You will need to have a public url for Metrics & Experiments, in command line, run the following:
     ```sh
-    ngrok http 80
+    ngrok http 3000
     ```
 * localhost url will tunnel to a new generated public url that you can use *for example: https://d6aa-2403-5805-8470-0-e139-bf8d-eea5-8a02.ngrok-free.app*
 
