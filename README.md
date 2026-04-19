@@ -1,137 +1,192 @@
-# LaunchDarkly SDK for React - ABC COmpany
+# LaunchDarkly React SDK Demo – ABC Company
 
-This is a sample app demonstrating `launchdarkly-react-client-sdk` for ABC Company.
+## Overview
+This demo showcases how LaunchDarkly can be used to:
+- Safely release features using feature flags
+- Target specific user attributes
+- Run controlled experiments
+- Observe application behaviour in real time
+
+The goal is to demonstrate both technical implementation and real-world usage patterns in a modern React application.
 
 ## Perquisites
-* Navigate to `chrome://settings/cookies`.
-* Make sure `Send a ‘Do Not Track’ request with your browsing traffic` is turned off.
-* Navigate to [LaunchDarkly](https://app.launchdarkly.com/signup?_bn=g&_bt=798492537804&creative=798492537804&device=c&gad_campaignid=14336284487&gad_source=1&gbraid=0AAAAADk9kA-R307kN069sTk3bOJ-XwZeD&gclid=EAIaIQobChMIpYjK1Mf4kwMVsZJmAh2-wweWEAAYASAAEgIvt_D_BwE&matchtype=e&utm_adgroup=Brand_General&utm_campaign=APAC_Search_Brand_pltf&utm_content=hp-toggle&utm_medium=cpc&utm_source=google&utm_term=launchdarkly) and sign up.
-* After login, go under the target environment & copy `Client-side ID` value. *Learn more [here](https://launchdarkly.com/docs/home/account/environment/keys)*.
-* Follow the steps [here](https://nodejs.org/en/download) to install *Node.js* to you machine.
-* Follow the steps [here](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable) to install *yarn* to your machine.
-* Sign up for [ngrok](https://ngrok.com) & follow the setup & installation steps.
+### Configure Browser
+- Open chrome://settings/cookies
+- Ensure “Send a ‘Do Not Track’ request” is turned OFF
 
-## Running The Application
-Follow these steps to run the app:
+### Open LaunchDarkly
+- Open https://app.launchdarkly.com
+- Create LaunchDarkly Account
+- Under target Environment - copy `Client-side ID` and `SDK key`
 
-* Clone or download the repository from GitHub.
-* Run `cp .env.example .env.local` to create the env file.
-* Fill out the `.env.local` variable `LAUNCHDARKLY_CLIENT_SIDE_ID` with your `Client-side ID` value.
-* In command line, navigate to folder & start the app by running the following:
+### Install Required Tools
+- Install Node.js - follow steps in https://nodejs.org/en/download
+- Install Yarn - from command line run 
     ```sh
-    yarn && yarn start
-    ```
-* Default browser will open with url **http://localhost:3000/**
-* In command line, create public url by running the following:
+    npm install -g yarn
+- Open https://dashboard.ngrok.com
+- Create account or sign in
+- Follow steps to install & add authtoken
+- Don't follow run the command to deploy your app online yet
+
+## Run the Application
+- Create environment file - from command line run 
+    ```sh
+    cp .env.example .env.local
+- Replace `{launchdarkly-client-side-id}` with your copied `Client-side ID`
+- Install dependencies - from command line run 
+    ```sh
+    yarn
+- Start application - from command line run 
+    ```sh
+    yarn start
+- Make sure the application is started successfully 'No issues found'
+- Start ngrok tunnel - from command line run 
     ```sh
     ngrok http 3000
-    ```
-* localhost url will tunnel to a new generated public url that you can use for Metrics & Experiments later. *For example: https://d6aa-2403-5805-8470-0-e139-bf8d-eea5-8a02.ngrok-free.app*
+- Open the public url created, it looks like this: `https://c603-2403-5805-8470-0-e4b9-35e8-3947-109b.ngrok-free.app`
 
-## Project Available Scripts
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-In the project directory, you can run the following:
-
-### `npm start`
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Application Available Contexts
-All contexts are of type `user`. You can pass the `key` in the `id` parameter of the URL to impersonate a specific user (this can be replaced by your production users later).
+## Available Scripts
+- Start dev server
+    ```sh
+    yarn start
+- Run tests
+    ```sh
+    yarn test
+- Build for production
+    ```sh
+    yarn build
+## User Contexts
+All contexts are of type `user`. Simulate users via URL, for example: `http://localhost:3000/?id=sem`
 
 | Key       | Name      | Title     | LogIn Component
 | --------  | --------  | --------  | -------- 
-| sem | Luke Cage | Solution Engineering Manager | New Component
-| sem | Jessica Jones | Solution Engineering Manager | New Component
-| pm | Tommy Shelby | Product Manager | New Component
-| ai | Steve Jobs | AI Product Manager | Old Component
-| demo-user1 | Mel Gibson | Demo End User | New Component
-| demo-user2 | Mandy Moore | Demo End User | New Component
-| demo-user3 | Julia Roberts | Demo End User | New Component
-| user1 | LHarrison Ford | End User | Old Component
-| user2 | Keanu Reeves | End User | Old Component
+| sem | Luke Cage | Solution Engineering Manager | New
+| sem | Jessica Jones | Solution Engineering Manager | New
+| pm | Tommy Shelby | Product Manager | New
+| ai | Steve Jobs | AI Product Manager | Old
+| demo-user1 | Mel Gibson | Demo End User | New
+| demo-user2 | Mandy Moore | Demo End User | New
+| demo-user3 | Julia Roberts | Demo End User | New
+| user1 | LHarrison Ford | End User | Old
+| user2 | Keanu Reeves | End User | Old
 
-**Note: The new logo is shown for all users. You can manually or using triggers toggle ON/OFF to show/hide the new logo for them all, if needed**
+Note: The new logo is enabled globally but controlled via feature flags.
 
-## LaunchDarkly Implemented Features
-The App has the following features implemented:
-* Feature Flags  (kill switch, individual targeting, rule-based)
-* Metrics (Clickable or tapped & Page Views) tracking is enabled
-* Experiment (using Flag & Clickable or tapped metric)  
-* Observability & Session-Replay are both enabled (Errors, Logs, Traces)
+## Implemented Features
+- Feature Flags (kill switch, targeting, rule-based rollout)
+- Metrics (click and page view tracking)
+- Experimentation (A/B testing via flags + metrics)
+- Observability & Session Replay (logs, errors, traces)
 
-## Part#1: Release and Remediate
-* Login to [LaunchDarkly](https://app.launchdarkly.com/)  under Flags -> create a new flag called `newLogo` with All traffic Flags is On.
-**Make sure you enable `Available on client-side SDKs`.**
+## Part 1: Release and Remediate
+### Create Feature Flag
+- Open https://app.launchdarkly.com
+    - Login to your account
+    - Under Flags - Create flag: `newLogo`
+	- Enable Client-side SDK availability
+	- Set to On
+    - Under target Environment - go to `Configuration in environment`
+    - Under Triggers - add two Generic triggers: `Update flag targeting to On` & `Update flag targeting to Off`
+    - Make sure to copy generated URL after each trigger is added
 
-* Toggle the flag `newLogo` to `On` in the dashboard and the app will show the new LaunchDarkly logo
-* Toggle the flag `newLogo` to `Off` in the dashboard and the app will show the old LaunchDarkly logo
+- Test Behaviour - open `<your ngrok public url>`
+    - ON → New logo
+    - OFF → Old logo
 
-Alternatively, you can use below API calls to turn the flags on/off without using LaunchDarkly UI: *you can also use `LaunchDarkly.postman_collection.json` in postman*
-* Turn `newLogo` Off
-```sh
-curl -X POST -H "Content-Type: application/json" -d '{"Authorization":"<replace-by SDK Key>"}' https://app.launchdarkly.com/webhook/triggers/69e3362da71b5d0ae0cf12bb/e39a8065-1348-405d-9422-a8887f40c1d4
-```
-* Turn `newLogo` On
-```sh
-curl -X POST -H "Content-Type: application/json" -d '{"Authorization":"<replace-by SDK Key>"}' https://app.launchdarkly.com/webhook/triggers/69e3361fe63ae80a969b069c/6c0ba787-9497-4236-b21d-4f3fe0d9c8c5
-```
-**Note: The app is using UseFlags allowing it to respond to flag changes without a browser refresh**
+- Test Behaviour - toggle via API
+    - Turn OFF
+        ```sh
+        curl -X POST -H "Content-Type: application/json" \
+        -d '{"Authorization":"<your SDK key>"}' \
+        https://app.launchdarkly.com/webhook/triggers/<environment-id>/<trigger-id>
+    - Turn ON
+        ```sh
+        curl -X POST -H "Content-Type: application/json" \
+        -d '{"Authorization":"<your SDK key>"}' \
+        https://app.launchdarkly.com/webhook/triggers/<environment-id>/<trigger-id>
+Note: Using useFlags in REACT web app → no browser refresh required.
 
-## Part#2: Target
-* Login to [LaunchDarkly](https://app.launchdarkly.com/) under Flags -> create a new flag called `newLogIn` 
-* Add individual target `pm` of kind `pm` serve `true`.
-* Add rule1 `title` - `is one of ` - `Solution Engineering Manager` & `Demo End User` serve `true`.
-**Make sure you enable `Available on client-side SDKs`.**
+## Part 2: Target
+### Create Feature Flag
+- Open https://app.launchdarkly.com
+    - Login to your account
+    - Under Flags - Create flag: `newLogIn`
+	- Enable Client-side SDK availability
+    - Configure Individual target
+        - context key: pm
+	    - kind: user
+        - variation: true
+	- Configure Rule:
+	    - Context kind: user
+        - Attribute: title
+        - Operator: is one of
+	    - values: Solution Engineering Manager <space> Demo End User
+	    - variation: true
+    - Default rule:
+        - Serve: false
+    - Under target Environment - go to `Configuration in environment`
+    - Under Triggers - add two Generic triggers: `Update flag targeting to On` & `Update flag targeting to Off`
+    - Make sure to copy generated URL after each trigger is added
+- Test Individual target Behaviour (New Login) - open `<your ngrok public url>?id=pm`
+- Test Rule Behaviour (New Login) - open `<your ngrok public url>?id=sem`
+- Test Rule Behaviour (New Login) - open `<your ngrok public url>?id=sem2`
+- Test Rule Behaviour (New Login) - open `<your ngrok public url>?id=demo-user1`
+- Test Rule Behaviour (New Login) - open `<your ngrok public url>?id=demo-user2`
+- Test Rule Behaviour (Old Login) - open `<your ngrok public url>?id=ai`
+- Test Rule Behaviour (Old Login) - open `<your ngrok public url>?id=user1`
+- Test Rule Behaviour (Old Login) - open `<your ngrok public url>?id=user2`
+- Test Behaviour - toggle via API
+    - Turn OFF (will turn OFF to all users)
+        ```sh
+        curl -X POST -H "Content-Type: application/json" \
+        -d '{"Authorization":"<your SDK key>"}' \
+        https://app.launchdarkly.com/webhook/triggers/<environment-id>/<trigger-id>
+    - Turn ON (will turn ON only for users matching individual target or rule defined)
+        ```sh
+        curl -X POST -H "Content-Type: application/json" \
+        -d '{"Authorization":"<your SDK key>"}' \
+        https://app.launchdarkly.com/webhook/triggers/<environment-id>/<trigger-id>
 
-* Navigate to url or add suffix `?id=sem` or `?id=demo-user1` or `?id=demo-user2` or `?id=demo-user3`, the app will show the new login component with the new Apple & Google SignUp links.
-* Add to the url `?id=ai` or `?id=user1` or `?id=user2`, the app will show the old login component.
+## Part 3: Experimentation (Optional)
+### Create Metric
+- Open https://app.launchdarkly.com
+    - Login to your account
+    - Under Iterate, Metrics - Create a new metric
+        - kind: `Clicked or tapped`
+        - click targets: `#signUpApple, .signUpAppleLink, #signUpGoogle, .signUpGoogleLink`
+        - target: type `Simple match`, url `<your ngrok public url>`, type `Exact match` url `<your ngrok public url>?id=`
+        - measure: `Count`
+        - name: `SignUp Apple or Google average` 
 
-Alternatively, you can use below API calls to turn the flags on/off without using LaunchDarkly UI: *you can also use `LaunchDarkly.postman_collection.json` in postman*
-* Turn `newLogIn` Off
-```sh
-curl -X POST -H "Content-Type: application/json" -d '{"Authorization":"<replace-by SDK Key>"}' https://app.launchdarkly.com/webhook/triggers/69e373496493570ab8884f5d/ce5774e8-63fd-41a1-a276-a30c30d5f122
-```
-* Turn `newLogIn` On - **the new login component will show up for 'sem' & 'demo-' users only**
-```sh
-curl -X POST -H "Content-Type: application/json" -d '{"Authorization":"<replace-by SDK Key>"}' https://app.launchdarkly.com/webhook/triggers/69e373654ebdd70aae1ac788/95ec42fc-7924-4ac1-a11e-df6f8b292fde
-```
-**Note: The app is using UseFlags allowing it to respond to flag changes without a browser refresh**
+### Create Experiment
+- Open https://app.launchdarkly.com
+- Login to your account
+- Under Iterate, Experiment -> create a new experiment 
+    - name: `New LogIn Page Sign Up Apple Or Google`
+    - Hypothesis: `If we add sign up with google or apple, then we will allow users to have quicker sign ups using their existing Apple or Google email, which will save the time re-adding their personal details into our system if they have Google or Apple account they can use.`
+    - under Metrics: select `SignUp Apple or Google average` 
+    - under Flag or AI Config: select `newLogIn` 
+- Click Save then start to kick-off the experiment
+- in `.env.local` file - make sure `{launchdarkly-client-side-id}` is your metric key. if not, change it & re-deploy your application.
+- Try any of the `Test Rule Behaviour (New Login)` URLs
+- Click Apple / Google sign-up options to generate experiment data
 
-## Part#3: Experimentation (Extra Credit)
-* Login to [LaunchDarkly](https://app.launchdarkly.com/) under Iterate, Metrics -> create a new metric as follows:
-    * kind: Clicked or tapped
-    * click targets: `#signUpApple, .signUpAppleLink, #signUpGoogle, .signUpGoogleLink`
-    * target: type `Simple match` url `<replace-by your ngrok generated public url>`, type `Exact match` url `<replace-by your ngrok generated public url>?id=`
-    * measure: `Count`
-    * name: `SignUp Apple/Google Average click rate` 
-    * key: `sign-up-apple-average-click-rate`  
-* Under Iterate, Experiment -> create a new experiment `New LogIn Page Sign Up Apple/Google`, select `SignUp Apple/Google Average click rate` under `Metrics` & select `newLogIn` under `Flags`
-* Click on start to kick-off the experiment
-* Navigate to your app url `<replace-by your ngrok generated public url>` or `<replace-by your ngrok generated public url>?id=sem` or `<replace-by your ngrok generated public url>?id=demo-user1`
-* Click on either Google or Apple Sign Up links.
+## Design Notes
+- Used `launchdarkly-react-client-sdk` with `useFlags` to enable real-time UI updates without requiring a page refresh.
+- Implemented event tracking using the LaunchDarkly `track` method to capture user interactions for metrics and experimentation.
+- Enabled observability and session replay to support end-to-end monitoring, debugging, and user behaviour analysis.
+- Added structured error handling (try/catch) to improve resilience and simplify troubleshooting.
+- Modularised UI components (e.g., `LoginNew.tsx`, `Login.tsx`) to keep feature variations isolated and maintainable.
+- Designed user context simulation via URL parameters to enable testing of targeting rules without authentication dependencies.
+- Exposed the local environment using ngrok to support external access for experimentation and real-time metric collection.
+- Structured feature flags to support:
+  - Safe rollout (kill switch)
+  - Targeted releases (based on user attributes)
+  - Experimentation (A/B testing)
+
+## Screenshots
+For visual reference of the implementation and configuration:
+- Application Screenshots: see [README-screen-shots-web.md](./README-screen-shots-web.md)
+- LaunchDarkly Configuration: see [README-screen-shots-ld.md](./README-screen-shots-ld.md)
+

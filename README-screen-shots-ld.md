@@ -5,9 +5,11 @@
 
 ## newLogo Flag
 ![newLogo](./screen_shots/ld-flag-newLogIn.jpg)
+![newLogo triggers](./screen_shots/ld-flag-newLogIn-triggers.jpg)
 
 ## newLogIn Flag
 ![newLogIn](./screen_shots/ld-flag-newLogo.jpg)
+![newLogIn triggers](./screen_shots/ld-flag-newLogIn-triggers.jpg)
 
 ## Live Events
 ![Live Events](./screen_shots/ld-live-events.jpg)
