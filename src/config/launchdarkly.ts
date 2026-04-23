@@ -1,4 +1,4 @@
-import { asyncWithLDProvider, initialize, LDClient, LDContext } from 'launchdarkly-react-client-sdk';
+import { asyncWithLDProvider, initialize, LDClient, LDContext, useLDClient } from 'launchdarkly-react-client-sdk';
 import Observability from '@launchdarkly/observability';
 import SessionReplay from '@launchdarkly/session-replay';
 
@@ -13,8 +13,9 @@ export const initializeLaunchDarkly = async (currentUser: any) => {
             title: currentUser.title
         } : null;
 
-        // Set clientSideID to your own Client-side ID. You can find this in
-        // your LaunchDarkly portal under Account settings / Projects
+        const ldClient: LDClient = initialize(process.env.LAUNCHDARKLY_CLIENT_SIDE_ID as string ?? '69e09a2b60ee3c0a6d062be9', context);
+        await ldClient.waitForInitialization(10);
+
         const ldProvider = await asyncWithLDProvider({
             clientSideID: process.env.LAUNCHDARKLY_CLIENT_SIDE_ID as string ?? '69e09a2b60ee3c0a6d062be9',
             context,
@@ -31,17 +32,12 @@ export const initializeLaunchDarkly = async (currentUser: any) => {
                         privacySetting: 'strict',
                         // or 'default' to redact text matching common regex for PII
                         // or 'none' to turn off obfuscation
-                    }
-                    )
+                    })
                 ]
             }
         });
 
-        const ldClient: LDClient = initialize(process.env.LAUNCHDARKLY_CLIENT_SIDE_ID as string ?? '69e09a2b60ee3c0a6d062be9', context);
-        await ldClient.waitForInitialization(10);
-        ldClient.track(process.env.LAUNCHDARKLY_METRIC_KEY as string ?? 'sign-up-apple-or-google-average', { context: context });
-
-        return { ldProvider, ldClient, context };
+        return { ldProvider, context };
     }
     catch (error) {
         console.error('Error initializing LaunchDarkly provider:', error);

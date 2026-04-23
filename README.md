@@ -168,7 +168,6 @@ Note: Using useFlags in REACT web app → no browser refresh required.
     - under Metrics: select `SignUp Apple or Google average` 
     - under Flag or AI Config: select `newLogIn` 
 - Click Save then start to kick-off the experiment
-- in `.env.local` file - make sure `{launchdarkly-client-side-id}` is your metric key. if not, change it & re-deploy your application.
 - Try any of the `Test Rule Behaviour (New Login)` URLs
 - Click Apple / Google sign-up options to generate experiment data
 

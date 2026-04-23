@@ -31,12 +31,9 @@ function App({ currentUser }: AppProps) {
 
   try {
     LDObserve.start();
-
-    if (newLogIn) {
-      LDRecord.start({
-        silent: false // if true, console.warn messages created in this method are skipped
-      });
-    }
+    LDRecord.start({
+      silent: false // if true, console.warn messages created in this method are skipped
+    });
 
     return (
       <div className="App">
@@ -56,7 +53,7 @@ function App({ currentUser }: AppProps) {
           <div className='container'>
             {
               newLogIn ?
-                <LogInNew />
+                <LogInNew currentUser={currentUser} />
                 :
                 <LogIn />
             }
