@@ -16,9 +16,9 @@ export const usersList: User[] = [{
 },
 {
     key: 'pm',
-    name: 'Tommy Shelby',
-    email: 'tommy.shelby@abc.com',
-    office: 'Sydney',
+    name: 'Ted Lasso',
+    email: 'ted.lasso@netflix.com',
+    office: 'Melbourne',
     title: 'Product Manager'
 },
 {
@@ -47,6 +47,13 @@ export const usersList: User[] = [{
     name: 'Julia Roberts',
     email: 'julia.roberts@netflix.com',
     office: 'Sydney',
+    title: 'Demo End User'
+},
+{
+    key: 'demo-user4',
+    name: 'Steve Martin',
+    email: 'steve.martin@netflix.com',
+    office: 'Perth',
     title: 'Demo End User'
 },
 {

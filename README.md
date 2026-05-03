@@ -68,6 +68,7 @@ All contexts are of type `user`. Simulate users via URL, for example: `http://lo
 | demo-user1 | Mel Gibson | Demo End User | New
 | demo-user2 | Mandy Moore | Demo End User | New
 | demo-user3 | Julia Roberts | Demo End User | New
+| demo-user4 | Steve Martin | Demo End User | New
 | user1 | LHarrison Ford | End User | Old
 | user2 | Keanu Reeves | End User | Old
 

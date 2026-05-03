@@ -3,6 +3,7 @@ import './App.css';
 import logoApple from './logo-apple.png';
 import logoGoogle from './logo-google.png';
 import { useLDClient } from 'launchdarkly-react-client-sdk';
+import { LDObserve } from '@launchdarkly/observability';
 
 interface LogInNewProps {
     newLogo?: any;
@@ -18,19 +19,39 @@ function LogInNew({ newLogo, currentUser }: LogInNewProps) {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Login attempt with:', { email, password });
-        // Add your login logic here
     };
 
     const handleSignUpApple = (e) => {
-        e.preventDefault();
-        ldClient.track('sign-up-apple-or-google-clicks', { context, currentUser });
-        console.log('Sign up with Apple');
+        let errorFound = false;
+        try {
+            e.preventDefault();
+
+            // Code to fail
+            throw new Error('Sign Up With Apple is currently unavailable. Please try again later.');
+        } catch (error) {
+            errorFound = true;
+            console.error("Silent Log:", error.message);
+            LDObserve.recordError(error, 'Sign Up With Apple Error', { feature: 'Sign Up With Apple', signUpMethod: 'apple', context: (context as any).key || context }, 'new-login-form');
+        }
+        finally {
+            ldClient.track('sign-up-apple-or-google-clicks', { context, currentUser, signUpMethod: 'apple', errorFound });
+            console.log('Sign up with Apple');
+        }
     }
 
     const handleSignUpGoogle = (e) => {
-        e.preventDefault();
-        ldClient.track('sign-up-apple-or-google-clicks', { context, currentUser });
-        console.log('Sign up with Google');
+        let errorFound = false;
+        try {
+            e.preventDefault();
+        } catch (error) {
+            errorFound = true;
+            console.error("Silent Log:", error.message);
+            LDObserve.recordError(error, 'Sign Up With Google Error', { feature: 'Sign Up With Google', signUpMethod: 'google', context: (context as any).key || context }, 'new-login-form');
+        }
+        finally {
+            ldClient.track('sign-up-apple-or-google-clicks', { context, currentUser, signUpMethod: 'google', errorFound });
+            console.log('Sign up with Google');
+        }
     }
 
     return (
