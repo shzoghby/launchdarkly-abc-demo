@@ -62,14 +62,14 @@ All contexts are of type `user`. Simulate users via URL, for example: `http://lo
 | Key       | Name      | Title     | LogIn Component
 | --------  | --------  | --------  | -------- 
 | sem | Luke Cage | Solution Engineering Manager | New
-| sem2 | Jessica Jones | Solution Engineering Manager | New
-| pm | Tommy Shelby | Product Manager | New
+| sem2 | Jessica Jones | Solution Engineering Manager | Old
+| pm | Ted Lasso | Product Manager | New
 | ai | Steve Jobs | AI Product Manager | Old
 | demo-user1 | Mel Gibson | Demo End User | New
 | demo-user2 | Mandy Moore | Demo End User | New
 | demo-user3 | Julia Roberts | Demo End User | New
 | demo-user4 | Steve Martin | Demo End User | New
-| user1 | LHarrison Ford | End User | Old
+| user1 | Harrison Ford | End User | Old
 | user2 | Keanu Reeves | End User | Old
 
 Note: The new logo is enabled globally but controlled via feature flags.
@@ -134,6 +134,8 @@ Note: Using useFlags in REACT web app → no browser refresh required.
 - Test Rule Behaviour (New Login) - open `<your ngrok public url>?id=sem2`
 - Test Rule Behaviour (New Login) - open `<your ngrok public url>?id=demo-user1`
 - Test Rule Behaviour (New Login) - open `<your ngrok public url>?id=demo-user2`
+- Test Rule Behaviour (New Login) - open `<your ngrok public url>?id=demo-user3`
+- Test Rule Behaviour (New Login) - open `<your ngrok public url>?id=demo-user4`
 - Test Rule Behaviour (Old Login) - open `<your ngrok public url>?id=ai`
 - Test Rule Behaviour (Old Login) - open `<your ngrok public url>?id=user1`
 - Test Rule Behaviour (Old Login) - open `<your ngrok public url>?id=user2`
@@ -149,8 +151,8 @@ Note: Using useFlags in REACT web app → no browser refresh required.
         -d '{"Authorization":"<your SDK key>"}' \
         https://app.launchdarkly.com/webhook/triggers/<environment-id>/<trigger-id>
 
-## Part 3: Experimentation (Optional)
-### Create Metric
+## Part 3: Experimentation
+### Create Metric (Clicked or tapped)
 - Open https://app.launchdarkly.com
     - Login to your account
     - Under Iterate, Metrics - Create a new metric
@@ -159,6 +161,15 @@ Note: Using useFlags in REACT web app → no browser refresh required.
         - target: type `Simple match`, url `<your ngrok public url>`, type `Exact match` url `<your ngrok public url>?id=`
         - measure: `Count`
         - name: `SignUp Apple or Google average` 
+
+### Create Metric (Custom)
+- Open https://app.launchdarkly.com
+    - Login to your account
+    - Under Iterate, Metrics - Create a new metric
+        - kind: `Custom`
+        - Event key: `sign-up-apple-or-google-clicks` 
+        - measure: `Count`
+        - name: `sign up apple or google clicks count` 
 
 ### Create Experiment
 - Open https://app.launchdarkly.com
