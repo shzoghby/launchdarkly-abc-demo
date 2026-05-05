@@ -25,6 +25,7 @@ function LogInNew({ newLogo, currentUser }: LogInNewProps) {
         let errorFound = false;
         try {
             e.preventDefault();
+            console.log('Sign Up with Apple initiated');
 
             // Code to fail
             throw new Error('Sign Up With Apple is currently unavailable. Please try again later.');
@@ -43,6 +44,7 @@ function LogInNew({ newLogo, currentUser }: LogInNewProps) {
         let errorFound = false;
         try {
             e.preventDefault();
+            console.log('Sign Up with Google initiated');
         } catch (error) {
             errorFound = true;
             console.error("Silent Log:", error.message);
